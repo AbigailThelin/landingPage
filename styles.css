@@ -1,3 +1,5 @@
+@import url(http://fonts.googleapis.com/css?family=Source+Sans+Pro:400,700,400italic|Raleway:500,600,700);
+
 *{
     margin: 0;
 }
@@ -26,13 +28,13 @@
     margin-top: 5px;
     width: 60%;
     justify-content: space-around;
-    font-family: Raleway;
+    font-family: 'Source Sans Pro', sans-serif;
     color: grey;
 }
 
 .number{
     color: #008ed6;
-    font-family: Raleway;
+    font-family: 'Source Sans Pro', sans-serif;
     cursor: pointer;
 }
 
@@ -58,7 +60,7 @@
 }
 
 .form{
-    width: 90%;
+    width: 70%;
     height: 40%;
     background: rgba(255, 255, 255, .6);
     display: flex;
@@ -70,7 +72,7 @@
 .head#form{
     width: 80%;
     color: black;
-    font-family: Raleway;
+    font-family: 'Source Sans Pro', sans-serif;
     text-align: center;
 }
 
@@ -89,7 +91,7 @@
     padding-left: 10px;
     border: .5px solid lightgrey;
     background-color: none;
-    font-family: Raleway;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .input:focus{
@@ -103,7 +105,7 @@
     background-color: red;
     color: white;
     border: none;
-    font-family: Raleway;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .sendBtn:focus{
@@ -121,6 +123,7 @@
     align-items: center;
     flex-direction: column;
     color: grey;
+    font-family: 'Source Sans Pro', sans-serif;
 }
 
 .logo#footer{
@@ -181,7 +184,7 @@
         width: 20%;
     }
     .callInfo{
-        width: 30%;
+        width: 23%;
         flex-direction: row;
     }
     .info{
@@ -189,11 +192,14 @@
         flex-direction: row;
     }
     .video{
-        width: 50%;
-        height: 70%;
+        width: 40%;
+        height: 60%;
     }
     .form{
         width: 30%;
         height: 70%;
+    }
+    .footer{
+        font-size: 1.5rem;
     }
 }
