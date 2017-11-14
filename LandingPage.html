@@ -17,27 +17,100 @@
                 <p class="number">+1(909)962-8859</p>
             </div>
         </div>
-
+        
         <div class="info">
-            <div class="video">VIDEO</div>
-            <div class="form">
-                <p class="head" id="form">Get $50 Metro Nissan Service Card when you join our VIP Club</p>
-                <div class="inputs">
-                    <input class="input" placeholder=" FIRST NAME"/>
-                    <input class="input" placeholder="LAST NAME"/>
-                    <input class="input" placeholder="EMAIL ADDRESS"/>
-                    <input class="input" placeholder="CELL PHONE"/>
+                <iframe class="video" src="https://www.youtube.com/embed/ZEnhYyX0dpk?rel=0&amp;loop=1&amp;showinfo=0" frameborder="0" allowfullscreen="" id="fitvid822144"></iframe>
+                <!-- SENT -->
+                <div class="form" id="confirmationSent">
+                    <div class="checkmarkContainer">
+                        <img src="./checkmark.svg"/>
+                    </div>
+                    <div class="confirmationTextContainer">
+                        <p class="confirmText">SIGNED UP FOR VIP CLUB</p>
+                        <p class="confirmText2">Respond Y to opt in</p>
+                    </div>
+                    <button class="goBackBtn" onclick="signUp()">Start Over</button>
                 </div>
-                <button class="sendBtn">SEND</button>
+                <!-- ERROR -->
+                <div class="form" id="errorSending">
+                    <div class="checkmarkContainer">
+                        <img src="./error.svg"/>
+                    </div>
+                    <div class="errorTextContainer">
+                        <p class="errorText">Sorry, there was a problem sending your request</p>
+                        <p class="errorText2">Please try again</p>
+                    </div>
+                    <button class="goBackBtn" onclick="signUp()">Start Over</button>
+                </div>
+
+                <div class="form" id="formInfo">
+                    <p class="head" id="form">Get $50 Metro Nissan Service Card when you join our VIP Club</p>
+                        <form id="enrollmentForm" class="inputs" onsubmit="submitForm()" action="javascript:void(0)">
+                                <input type="hidden" name="accesskey" value="1BG7KJW80SYQI4KFUQ9Q">
+                                <input type="hidden" name="returnURL" value="http://app.chatterspot.com/images/landingpage/static/success-metronissan.html">
+                                <input type="hidden" name="emailSendConfirmation" value="false">
+                                <input type="hidden" name="emailFromAddress" value="info@chatterspot.com">
+                                <input type="hidden" name="enterpriseID" value="">
+                                <input type="hidden" name="clientID" value="10362">
+                                <input type="hidden" name="webSignup" value="true">
+                                <input type="hidden" name="emailTemplateID" value="">
+                                <input type="hidden" name="birthdate" value="">
+                                <input type="hidden" name="address" value="">
+                                <input type="hidden" name="city" value="">
+                                <input type="hidden" name="state" value="">
+                                <input type="hidden" name="zipCode" value="">
+                                <input type="hidden" name="parentEmailAddress" value="">
+
+                            <input class="input" name="firstName" placeholder=" FIRST NAME" required/>
+                            <input class="input" name="lastName" placeholder="LAST NAME" required/>
+                            <input class="input" name="emailAddress" placeholder="EMAIL ADDRESS" required/>
+                            <input class="input" name="cellPhone" placeholder="CELL PHONE" required/>
+                            <button class="sendBtn" type="submit">Join</button>
+                        </form>
+                    
+                </div>
             </div>
-        </div>
+
 
         <div class="footer">
-                <!-- <img class="logo" id="footer" src="./page-assets/images/MetroNissanLogo.png" alt='logo'/>     -->
                 <p>9440 Autoplex St, Monticlair, CA 91763</p>  
                 <p class="number">(909)962-8859</p>            
         </div>
 
-    </div>
+    </div>    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fetch/2.0.3/fetch.min.js"></script> 
+
+    <script>
+        function getFormData(){
+            let pairs = [];
+            let form = document.getElementById('enrollmentForm')
+            for ( let i = 0; i < form.elements.length; i++ ) {
+                let element = form.elements[i];
+                pairs.push(encodeURIComponent(element.name) + "=" + encodeURIComponent(element.value));
+            }
+            return pairs.join("&");
+        }
+
+        function submitForm(){
+            const form = getFormData();
+
+            fetch('https://api.chatterspot.com/MemberImporter.asmx/ImportMember', {
+                method: 'post',
+                headers: {
+                    "Content-type": "application/x-www-form-urlencoded; charset=UTF-8"
+                },
+                body: form
+            })
+            .then(function(response){
+                document.getElementById("formInfo").style.display="none";
+                document.getElementById("confirmationSent").style.display="flex"
+            })
+            .catch(function(err){
+                console.error(err)
+                document.getElementById("formInfo").style.display="none";
+                document.getElementById("errorSending").style.display="flex"
+            });
+        }
+    </script>
 </body>
 </html>
